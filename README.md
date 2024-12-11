@@ -63,3 +63,78 @@
 - Yêu cầu đưa thông tin cũ của sản phẩm vào form cập nhật. (0.5đ)
 - Kiểm tra dữ liệu tương tự khi thêm sản phẩm. (0.5đ)
 - Cập nhật thành công, reset form, hiển thị thông báo cập nhật thành công. (0.5đ)
+
+
+
+
+
+
+
+
+
+
+-Bọc thẻ Butes> và <Route>
+-Xây các pages, tạo file JSX sẵn Home, browserRouter ở index.js hoặc app.js.
+-Xây <RoProduct,Login,Register, 404 page hết 1 lượt vs race
+- Gán  <Route> vs path=”/” và element
+-Tạo context: thư mục và file context: khởi tạo đối tượng, tạo hàm Provider và chấm Provider vs value bao trùm children và race export ra ngoài. Có thể get fetch Api get vs dispatch data luôn [] ở đó
+-Bọc Provider vào UI <Route>
+- Tạo thư mục provider và tệp Reducer có các switch case crud, default state.
+- Khi ở list gọi data dựng base API phần Axios. tạo 1 instance = axios.create vs {} baseURL
+"Content-Type": "application/json",
+- tạo file product Form vs React hook room
+- tạo validate vs schema ZOD
+const { handleSubmit, register, reset, formState: { errors }, } = useForm({ resolver: zodResolver(registerSchema), });
+{...register("email", { required: true })}
+{...register("price", { required: true, valueAsNumber: true })}
+-update, 2 case cs ID truyền lên, gọi detail, reset(data)
+ xong gửi. Về list
+Làm Login logout. Lưu dư vào local, sau check đăng nhập mỗi request gửi lên
+<!-- <select {...register("category")}> {categories.map((item) => ( <option value={item.id}>{item.title}</option> })} </select> -->
+
+import instance from ".";
+
+export const getAll = async (path) => {
+	try {
+		const { data } = await instance.get(path);
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const getById = async (path, id) => {
+	try {
+		const { data } = await instance.get(`${path}/${id}`);
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const removeById = async (path, id) => {
+	try {
+		const res = await instance.delete(`${path}/${id}`);
+		return res;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const createNew = async (path, dataBody) => {
+	try {
+		const { data } = await instance.post(`${path}`, dataBody);
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const updateById = async (path, id, dataBody) => {
+	try {
+		const { data } = await instance.patch(`${path}/${id}`, dataBody);
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+};
